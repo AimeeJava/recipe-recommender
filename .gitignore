@@ -24,3 +24,4 @@ coverage/
 # editor files
 .vscode/
 .idea/
+node_modules/
