@@ -336,6 +336,7 @@ async function fetchRecipes() {
     try {
       data = JSON.parse(rawBody);
     } catch (error) {
+      console.log("Raw server response:", rawBody);
       throw new Error("Received an invalid server response.");
     }
   }
