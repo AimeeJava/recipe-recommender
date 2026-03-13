@@ -198,11 +198,10 @@ function renderRecipes(recipes) {
   }
 
   recipesContainer.innerHTML = recipes
-    .map(
-      (recipeData) => {
-        const recipe = normalizeRecipe(recipeData);
+    .map((recipeData) => {
+      const recipe = normalizeRecipe(recipeData);
 
-        return `
+      return `
       <article class="recipe-card" aria-labelledby="recipe-title-${recipe.id}">
         ${
           recipe.image
@@ -239,8 +238,7 @@ function renderRecipes(recipes) {
         </div>
       </article>
     `;
-      },
-    )
+    })
     .join("");
 
   recipesContainer.setAttribute("aria-busy", "false");
@@ -328,7 +326,7 @@ async function fetchRecipes() {
   });
 
   const response = await fetch(
-    `/api/recommend?${query.toString()}`,
+    `/.netlify/functions/recommend?${query.toString()}`,
   );
 
   const rawBody = await response.text();
@@ -389,7 +387,8 @@ async function handleSearch() {
     console.error(error);
     showMessage(
       "danger",
-      error.message || "Unable to fetch recipes right now. Please try again later.",
+      error.message ||
+        "Unable to fetch recipes right now. Please try again later.",
     );
     renderEmptyState();
     resultsSummary.textContent = "Search failed.";
