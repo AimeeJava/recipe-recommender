@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY;
 const ALLOWED_METHODS = new Set(["GET", "OPTIONS"]);
 const ALLOWED_SORTS = new Set(["default", "time", "likes"]);
@@ -115,7 +113,8 @@ exports.handler = async (event) => {
 
   try {
     const params = event.queryStringParameters || {};
-    const { ingredients, exclude, filters, sort } = normalizeQueryParams(params);
+    const { ingredients, exclude, filters, sort } =
+      normalizeQueryParams(params);
 
     if (ingredients.length === 0) {
       return jsonResponse(400, {
